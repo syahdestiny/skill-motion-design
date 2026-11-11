@@ -1,0 +1,12 @@
+
+{
+  "name": "cloud-motion-studio",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "render": "node render.mjs"
+  },
+  "dependencies": {
+    "playwright": "^1.56.0"
+  }
+}
