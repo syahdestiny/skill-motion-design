@@ -1,59 +1,594 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Cloud Motion Studio</title>
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Day One Arabic — Self Assessment</title>
 
-    body {
-      margin: 0;
-      width: 1920px;
-      height: 1080px;
-      overflow: hidden;
-      background: #101827;
-      color: white;
-      font-family: Arial, sans-serif;
-    }
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@700;800;900&family=Open+Sans:wght@700;800&display=swap');
 
-    .scene {
-      width: 100%;
-      height: 100%;
-      display: grid;
-      place-items: center;
-      background:
-        radial-gradient(circle at center, #263b60, #101827 70%);
-    }
+:root {
+  --blue1:#2D70F2;
+  --blue2:#2563EB;
+  --blue3:#1A46C4;
+  --navy:#1E3A5F;
+  --gold:#F5C542;
+  --white:#fff;
+}
 
-    .title {
-      font-size: 112px;
-      font-weight: 800;
-      letter-spacing: 8px;
-      opacity: 0;
-      transform: translateY(80px);
-    }
-  </style>
+* { box-sizing:border-box; }
+
+html,body {
+  margin:0;
+  width:1080px;
+  height:1920px;
+  overflow:hidden;
+  background:#1A46C4;
+  color:white;
+  font-family:'Open Sans',sans-serif;
+}
+
+#stage {
+  position:relative;
+  width:1080px;
+  height:1920px;
+  overflow:hidden;
+  background:
+    radial-gradient(ellipse at 85% 16%,rgba(255,255,255,.22),transparent 34%),
+    radial-gradient(ellipse at 12% 82%,rgba(8,28,110,.35),transparent 38%),
+    linear-gradient(155deg,var(--blue1),var(--blue2) 48%,var(--blue3));
+}
+
+#stage:before {
+  content:"";
+  position:absolute;
+  inset:0;
+  opacity:.10;
+  background-image:
+    repeating-linear-gradient(45deg,transparent 0 95px,rgba(255,255,255,.13) 96px,transparent 98px),
+    repeating-linear-gradient(-45deg,transparent 0 95px,rgba(255,255,255,.13) 96px,transparent 98px);
+  mask-image:linear-gradient(transparent 12%,black 28%,black 72%,transparent 88%);
+}
+
+.glow {
+  position:absolute;
+  width:520px;
+  height:520px;
+  border-radius:50%;
+  filter:blur(90px);
+  opacity:.15;
+  pointer-events:none;
+  animation:drift 9s ease-in-out infinite alternate;
+}
+.glow.one { background:#fff;right:-230px;top:350px; }
+.glow.two { background:#071d75;left:-260px;bottom:350px;animation-delay:-4s; }
+
+@keyframes drift {
+  from { transform:translate(0,0) scale(.9); }
+  to { transform:translate(-35px,45px) scale(1.12); }
+}
+
+#top-safe {
+  position:absolute;
+  inset:0 0 auto;
+  height:190px;
+}
+
+#header {
+  position:absolute;
+  top:190px;
+  left:0;
+  width:100%;
+  height:110px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:20px;
+  z-index:5;
+}
+
+#logo {
+  width:84px;
+  height:84px;
+  object-fit:contain;
+  border-radius:50%;
+  border:3px solid var(--gold);
+  background:#20232c;
+}
+
+.brand {
+  font-family:'Open Sans',sans-serif;
+  font-weight:800;
+  font-size:38px;
+  letter-spacing:-1.5px;
+  white-space:nowrap;
+}
+.brand .one { color:var(--gold); }
+
+#content {
+  position:absolute;
+  top:330px;
+  left:0;
+  width:100%;
+  height:1050px;
+  padding:55px 140px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  z-index:2;
+}
+
+#scene {
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:30px;
+  opacity:1;
+  transform:translateY(0) scale(1);
+  transition:opacity .22s ease,transform .22s ease;
+}
+
+#scene.enter {
+  opacity:0;
+  transform:translateY(24px) scale(.98);
+}
+
+.kicker {
+  display:inline-block;
+  color:var(--navy);
+  background:#fff;
+  border-radius:50px;
+  padding:12px 28px;
+  font-size:27px;
+  font-weight:800;
+}
+
+.headline {
+  font-size:64px;
+  line-height:1.28;
+  font-weight:800;
+  letter-spacing:-2px;
+  text-wrap:balance;
+}
+
+.support {
+  font-size:38px;
+  line-height:1.55;
+  font-weight:700;
+  max-width:800px;
+}
+
+.arabic {
+  font-family:'Cairo',sans-serif;
+  font-size:43px;
+  line-height:1.9;
+  font-weight:800;
+  direction:rtl;
+  unicode-bidi:plaintext;
+  text-align:center;
+  width:100%;
+  text-wrap:pretty;
+}
+
+.arabic-card {
+  width:100%;
+  padding:38px 34px;
+  border:2px solid rgba(255,255,255,.38);
+  border-radius:34px;
+  background:rgba(13,43,120,.32);
+  box-shadow:0 22px 60px rgba(5,22,75,.18);
+}
+
+.read-label {
+  font-size:31px;
+  font-weight:800;
+  letter-spacing:1px;
+}
+
+.timer {
+  width:100%;
+  margin-top:12px;
+}
+.timer-track {
+  height:13px;
+  width:100%;
+  border-radius:30px;
+  background:rgba(255,255,255,.28);
+  overflow:hidden;
+}
+.timer-fill {
+  width:0%;
+  height:100%;
+  border-radius:30px;
+  background:var(--gold);
+  box-shadow:0 0 18px rgba(245,197,66,.7);
+}
+.timer-number {
+  margin-top:12px;
+  font-size:30px;
+  font-weight:800;
+  color:var(--gold);
+}
+
+.question-list {
+  display:flex;
+  flex-direction:column;
+  gap:24px;
+  width:100%;
+  text-align:left;
+}
+.question {
+  font-size:37px;
+  line-height:1.45;
+  font-weight:800;
+  padding:23px 27px;
+  border-radius:24px;
+  background:rgba(255,255,255,.13);
+  border:1px solid rgba(255,255,255,.25);
+}
+
+.result-list {
+  display:flex;
+  flex-direction:column;
+  gap:22px;
+  width:100%;
+}
+.result-item {
+  padding:22px 26px;
+  border-radius:22px;
+  background:rgba(255,255,255,.14);
+  font-size:34px;
+  font-weight:700;
+  line-height:1.4;
+  text-align:left;
+}
+.result-item:before {
+  content:"";
+  display:inline-block;
+  width:13px;
+  height:13px;
+  border-radius:50%;
+  background:var(--gold);
+  margin-right:17px;
+  vertical-align:middle;
+}
+
+#subtitle-zone {
+  position:absolute;
+  left:0;
+  top:1380px;
+  width:100%;
+  height:320px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:25px 90px;
+  text-align:center;
+  z-index:3;
+}
+#subtitle {
+  max-width:900px;
+  font-size:43px;
+  font-weight:800;
+  line-height:1.4;
+}
+
+#footer {
+  position:absolute;
+  bottom:95px;
+  width:100%;
+  text-align:center;
+  font-size:23px;
+  font-weight:700;
+  opacity:.78;
+  letter-spacing:2px;
+}
+
+#scene-number {
+  display:none;
+}
+
+#cover {
+  display:none;
+  position:absolute;
+  inset:0;
+  z-index:10;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  gap:45px;
+  padding:220px 140px;
+  text-align:center;
+  background:
+    radial-gradient(ellipse at 80% 20%,rgba(255,255,255,.2),transparent 35%),
+    linear-gradient(155deg,var(--blue1),var(--blue2) 48%,var(--blue3));
+}
+#cover img {
+  width:170px;
+  height:170px;
+  object-fit:contain;
+  border:5px solid var(--gold);
+  border-radius:50%;
+}
+#cover h1 {
+  font-size:70px;
+  line-height:1.25;
+  margin:0;
+}
+#cover p {
+  font-size:38px;
+  line-height:1.5;
+  font-weight:700;
+  margin:0;
+}
+
+</style>
 </head>
+
 <body>
-  <main class="scene">
-    <div class="title" id="title">MOTION STUDIO</div>
+<div id="stage">
+  <div class="glow one"></div>
+  <div class="glow two"></div>
+  <div id="top-safe"></div>
+
+  <header id="header">
+    <img id="logo" src="assets/day-one-arabic-logo.png" alt="Day One Arabic">
+    <div class="brand"><span>@DAY</span><span class="one">ONE</span><span>ARABIC</span></div>
+  </header>
+
+  <main id="content">
+    <div id="scene"></div>
   </main>
 
-  <script>
-    window.setFrame = (seconds) => {
-      const t = Math.max(0, Math.min(1, seconds / 1.2));
-      const eased = 1 - Math.pow(1 - t, 3);
+  <section id="subtitle-zone">
+    <div id="subtitle"></div>
+  </section>
 
-      const title = document.getElementById("title");
+  <div id="footer">@DAYONEARABIC</div>
 
-      title.style.opacity = eased;
-      title.style.transform =
-        `translateY(${80 * (1 - eased)}px)`;
-    };
-  </script>
+  <div id="cover">
+    <img src="assets/day-one-arabic-logo.png" alt="Day One Arabic">
+    <h1>Ikuti self-assessment sederhana ini.</h1>
+    <p>Mulai belajar Bahasa Arab dari level yang tepat.</p>
+    <div class="brand"><span>@DAY</span><span class="one">ONE</span><span>ARABIC</span></div>
+  </div>
+</div>
+
+<script>
+const scenes = [
+  {
+    duration:9,
+    type:"hook",
+    kicker:"Sebelum memulai belajar",
+    title:"Banyak orang ingin mulai belajar Bahasa Arab lagi, tapi salah saat memulainya.",
+    subtitle:"Sebelum membeli buku. Sebelum ikut kursus."
+  },
+  {
+    duration:9,
+    type:"instructions",
+    kicker:"Cara Mengikuti Tes:",
+    title:"Baca teksnya",
+    items:[
+      "Jawab pertanyaannya",
+      "Jangan buka kamus",
+      "Jangan pakai Google Translate"
+    ],
+    subtitle:"Jawab berdasarkan kemampuanmu saat ini."
+  },
+  {
+    duration:10,
+    type:"reading",
+    label:"TEXT A",
+    arabic:"اسمي أحمد. أنا طالب في المدرسة الثانوية. أستيقظ الساعة الخامسة صباحًا ثم أصلي الفجر. بعد ذلك أذهب إلى المدرسة وأدرس اللغة العربية والرياضيات. بعد العودة إلى البيت أساعد والدي ثم أقرأ كتابًا قبل النوم.",
+    subtitle:"Baca teksnya. Waktu membaca 10 detik."
+  },
+  {
+    duration:9,
+    type:"questions",
+    label:"Text A",
+    items:[
+      "1. Siapa nama tokoh dalam teks?",
+      "2. Di mana tokoh belajar?",
+      "3. Apa yang dilakukan sebelum tidur?"
+    ],
+    subtitle:"Jawab pertanyaannya berdasarkan teks."
+  },
+  {
+    duration:10,
+    type:"result",
+    label:"A1",
+    title:"Jika kamu hanya mengenali sekitar 10–30% kosakata:",
+    items:[
+      "Banyak kata yang belum dikenal",
+      "Sulit memahami paragraf",
+      "Menebak jawaban"
+    ],
+    subtitle:"Kemungkinan kamu berada di tahap awal A1."
+  },
+  {
+    duration:10,
+    type:"reading",
+    label:"TEXT B",
+    arabic:"يعتقد كثير من الطلاب أن حفظ المفردات وحده يكفي لتعلم اللغة العربية، لكن الحقيقة أن اللغة تُكتسب بالممارسة المستمرة. فكلما استخدم الطالب الكلمات في جمل ومحادثات حقيقية أصبحت أسهل في التذكر والاستعمال.",
+    subtitle:"Baca teksnya. Waktu membaca 10 detik."
+  },
+  {
+    duration:9,
+    type:"questions",
+    label:"Text B",
+    items:[
+      "1. Apa ide utama paragraf ini?",
+      "2. Apa yang dianggap kurang tepat oleh penulis?",
+      "3. Menurut penulis, bagaimana cara terbaik menguasai bahasa?"
+    ],
+    subtitle:"Jawab pertanyaannya berdasarkan teks."
+  },
+  {
+    duration:10,
+    type:"result",
+    label:"Level B",
+    title:"Jika kamu mampu:",
+    items:[
+      "Menangkap ide utama",
+      "Menjawab pemahaman bacaan",
+      "Memahami sebagian besar kosakata kunci"
+    ],
+    subtitle:"Kemungkinan Level B adalah titik awalmu."
+  },
+  {
+    duration:10,
+    type:"reading",
+    label:"TEXT C",
+    arabic:"أصبحت التقنيات الرقمية جزءًا مهمًا من عملية تعلم اللغات في العصر الحديث. ومع ذلك يرى بعض الباحثين أن كثرة الاعتماد على التطبيقات قد تقلل من فرص التفاعل الإنساني الحقيقي، وهو عنصر أساسي في اكتساب اللغة بصورة طبيعية وفعالة.",
+    subtitle:"Baca teksnya. Waktu membaca 10 detik."
+  },
+  {
+    duration:9,
+    type:"questions",
+    label:"Text C",
+    items:[
+      "1. Apa tema utama paragraf ini?",
+      "2. Apa kekhawatiran sebagian peneliti?",
+      "3. Mengapa interaksi manusia dianggap penting dalam belajar bahasa?"
+    ],
+    subtitle:"Jawab pertanyaannya berdasarkan teks."
+  },
+  {
+    duration:20,
+    type:"result",
+    label:"Level C",
+    title:"Jika kamu mampu memahami teks yang lebih menantang:",
+    items:[
+      "Menjawab pertanyaan dengan benar",
+      "Menjelaskan gagasan penulis"
+    ],
+    subtitle:"Mulailah belajar dari level yang sesuai. AKU BISA, HARI INI."
+  }
+];
+
+const sceneEl = document.getElementById("scene");
+const subtitleEl = document.getElementById("subtitle");
+const coverEl = document.getElementById("cover");
+const footerEl = document.getElementById("footer");
+const headerEl = document.getElementById("header");
+
+const totalSceneDuration = scenes.reduce((sum,s)=>sum+s.duration,0);
+const coverDuration = 3;
+const totalDuration = totalSceneDuration + coverDuration;
+
+function escapeHTML(value) {
+  return String(value).replace(/[&<>"']/g, ch => ({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+  })[ch]);
+}
+
+function renderItems(items, cls="result-item") {
+  return `<div class="${cls}">${items.map(item =>
+    `<div class="${cls === "question" ? "question" : "result-item"}">${escapeHTML(item)}</div>`
+  ).join("")}</div>`;
+}
+
+function renderScene(s, elapsed) {
+  let html = "";
+
+  if (s.type === "hook") {
+    html = `
+      <div class="kicker">${escapeHTML(s.kicker)}</div>
+      <div class="headline">${escapeHTML(s.title)}</div>`;
+  }
+
+  if (s.type === "instructions") {
+    html = `
+      <div class="kicker">${escapeHTML(s.kicker)}</div>
+      <div class="headline">${escapeHTML(s.title)}</div>
+      ${renderItems(s.items)}`;
+  }
+
+  if (s.type === "reading") {
+    const progress = Math.max(0,Math.min(100,(elapsed / s.duration)*100));
+    const remaining = Math.max(0,Math.ceil(s.duration-elapsed));
+    html = `
+      <div class="read-label">${escapeHTML(s.label)}</div>
+      <div class="arabic-card">
+        <div class="arabic" lang="ar" dir="rtl">${escapeHTML(s.arabic)}</div>
+      </div>
+      <div class="timer">
+        <div class="timer-track">
+          <div class="timer-fill" style="width:${progress}%"></div>
+        </div>
+        <div class="timer-number">${remaining}</div>
+      </div>`;
+  }
+
+  if (s.type === "questions") {
+    html = `
+      <div class="kicker">${escapeHTML(s.label)}</div>
+      <div class="question-list">
+        ${s.items.map(item=>`<div class="question">${escapeHTML(item)}</div>`).join("")}
+      </div>`;
+  }
+
+  if (s.type === "result") {
+    html = `
+      <div class="kicker">${escapeHTML(s.label)}</div>
+      <div class="headline">${escapeHTML(s.title)}</div>
+      <div class="result-list">
+        ${s.items.map(item=>`<div class="result-item">${escapeHTML(item)}</div>`).join("")}
+      </div>`;
+  }
+
+  sceneEl.innerHTML = html;
+  subtitleEl.textContent = s.subtitle || "";
+}
+
+let lastSceneIndex = -1;
+
+window.setFrame = function(seconds) {
+  const t = Math.max(0,Math.min(seconds,totalDuration));
+
+  if (t >= totalSceneDuration) {
+    sceneEl.style.display = "none";
+    subtitleEl.style.display = "none";
+    headerEl.style.display = "none";
+    footerEl.style.display = "none";
+    coverEl.style.display = "flex";
+    return;
+  }
+
+  coverEl.style.display = "none";
+  sceneEl.style.display = "flex";
+  subtitleEl.style.display = "block";
+  headerEl.style.display = "flex";
+  footerEl.style.display = "block";
+
+  let elapsed = t;
+  let index = 0;
+
+  while (index < scenes.length-1 && elapsed >= scenes[index].duration) {
+    elapsed -= scenes[index].duration;
+    index++;
+  }
+
+  if (index !== lastSceneIndex) {
+    sceneEl.classList.add("enter");
+    lastSceneIndex = index;
+    renderScene(scenes[index],elapsed);
+    requestAnimationFrame(()=>sceneEl.classList.remove("enter"));
+  } else if (scenes[index].type === "reading") {
+    renderScene(scenes[index],elapsed);
+  }
+};
+
+window.getDuration = function() {
+  return totalDuration;
+};
+
+window.setFrame(0);
+</script>
 </body>
 </html>
