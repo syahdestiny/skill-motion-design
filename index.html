@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cloud Motion Studio</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+      background: #101827;
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+
+    .scene {
+      width: 100%;
+      height: 100%;
+      display: grid;
+      place-items: center;
+      background:
+        radial-gradient(circle at center, #263b60, #101827 70%);
+    }
+
+    .title {
+      font-size: 112px;
+      font-weight: 800;
+      letter-spacing: 8px;
+      opacity: 0;
+      transform: translateY(80px);
+    }
+  </style>
+</head>
+<body>
+  <main class="scene">
+    <div class="title" id="title">MOTION STUDIO</div>
+  </main>
+
+  <script>
+    window.setFrame = (seconds) => {
+      const t = Math.max(0, Math.min(1, seconds / 1.2));
+      const eased = 1 - Math.pow(1 - t, 3);
+
+      const title = document.getElementById("title");
+
+      title.style.opacity = eased;
+      title.style.transform =
+        `translateY(${80 * (1 - eased)}px)`;
+    };
+  </script>
+</body>
+</html>
