@@ -1,0 +1,41 @@
+
+name: Cloud Motion Studio Render
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install FFmpeg
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+
+      - name: Install dependencies
+        run: |
+          npm install
+          npx playwright install chromium --with-deps
+
+      - name: Render MP4
+        run: npm run render
+
+      - name: Upload video
+        uses: actions/upload-artifact@v4
+        with:
+          name: motion-studio-demo
+          path: motion-studio-demo.mp4
+          retention-days: 3
