@@ -36,6 +36,6 @@ jobs:
       - name: Upload video
         uses: actions/upload-artifact@v4
         with:
-          name: motion-studio-demo
-          path: motion-studio-demo.mp4
+          name: day-one-arabic-video
+          path: day-one-arabic-self-assessment.mp4
           retention-days: 3
